@@ -7,10 +7,6 @@ public class Game {
     private Date startTime;
     private Date endTime;
 
-    public Game() {
-        System.out.println("Ran the constructor.");
-    }
-
     public Date getStartTime() {
         return startTime;
     }
