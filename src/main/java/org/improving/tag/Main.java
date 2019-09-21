@@ -1,9 +1,7 @@
 package org.improving.tag;
 
-import org.improving.tag.commands.*;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
