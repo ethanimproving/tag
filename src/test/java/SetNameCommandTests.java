@@ -1,9 +1,7 @@
 import org.improving.tag.Game;
-import org.improving.tag.Player;
 import org.improving.tag.SpringContext;
 import org.improving.tag.commands.SetNameCommand;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
@@ -15,7 +13,6 @@ public class SetNameCommandTests {
     // Escape method scope
     SetNameCommand target;
     TestInputOutput io;
-    Player p;
     AnnotationConfigApplicationContext context =
             new AnnotationConfigApplicationContext(SpringContext.class);
 
@@ -24,7 +21,6 @@ public class SetNameCommandTests {
     @BeforeEach
     public void arrange() {
         // Arrange
-        io = new TestInputOutput();
         target = new SetNameCommand();
     }
 
@@ -65,6 +61,16 @@ public class SetNameCommandTests {
 
         // Assert
         assertFalse(result);
+    }
+
+    @Test
+    public void isValid_should_be_true_when_input_is_set_with_caps() {
+
+        // Act
+        var result = target.isValid("@Set name=Ethan", null);
+
+        // Assert
+        assertTrue(result);
     }
 
 }

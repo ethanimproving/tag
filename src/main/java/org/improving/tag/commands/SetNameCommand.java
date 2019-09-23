@@ -10,21 +10,18 @@ public class SetNameCommand implements Command {
     @Override
     public boolean isValid(String input, Game game) {
 
-//        if (input == null) return false;
-//        input = input.trim();
-//        var parts = input.split(" ");
-//        if (parts.length == 1) return false;
-//        return parts[0].equalsIgnoreCase("@set");
-
         if (input == null) return false;
-        if (input.length() < 11) return false;
-        return input.trim().startsWith("@set name=");
+        if (!input.contains("=")) return false;
+        input = input.trim();
+        var parts = input.split("=");
+        if (parts.length == 1) return false;
+        return parts[0].equalsIgnoreCase("@set name");
     }
 
     @Override
     public void execute(String input, Game game) {
         input = input.trim();
-        var name = input.substring(10).trim();
-        game.getPlayer().setName(name);
+        var parts = input.split("=");
+        game.getPlayer().setName(parts[1]);
     }
 }
