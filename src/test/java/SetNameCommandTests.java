@@ -13,15 +13,14 @@ public class SetNameCommandTests {
     // Escape method scope
     SetNameCommand target;
     TestInputOutput io;
-    AnnotationConfigApplicationContext context =
-            new AnnotationConfigApplicationContext(SpringContext.class);
-
-    Game game = context.getBean(Game.class);
+    Game game;
 
     @BeforeEach
     public void arrange() {
         // Arrange
-        target = new SetNameCommand();
+        io = new TestInputOutput();
+        target = new SetNameCommand(io);
+        game = new Game(null, io);
     }
 
     @Test
@@ -30,7 +29,7 @@ public class SetNameCommandTests {
         target.execute("@set name=Ethan", game);
 
         // Assert
-        assertEquals("Ethan",  game.getPlayer().getName());
+        assertEquals("Your name is now Ethan.",  io.lastText);
     }
 
     @Test
@@ -67,7 +66,7 @@ public class SetNameCommandTests {
     public void isValid_should_be_true_when_input_is_set_with_caps() {
 
         // Act
-        var result = target.isValid("@Set name=Ethan", null);
+        var result = target.isValid("@Set Name=Ethan", null);
 
         // Assert
         assertTrue(result);

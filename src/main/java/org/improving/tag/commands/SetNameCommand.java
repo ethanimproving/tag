@@ -6,7 +6,10 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class SetNameCommand implements Command {
-
+    private InputOutput io;
+    public SetNameCommand(InputOutput io) {
+        this.io = io;
+    }
     @Override
     public boolean isValid(String input, Game game) {
 
@@ -23,5 +26,6 @@ public class SetNameCommand implements Command {
         input = input.trim();
         var parts = input.split("=");
         game.getPlayer().setName(parts[1]);
+        io.displayText("Your name is now " + game.getPlayer().getName() + ".");
     }
 }
