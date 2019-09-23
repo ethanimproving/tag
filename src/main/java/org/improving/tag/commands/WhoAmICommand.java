@@ -5,22 +5,20 @@ import org.improving.tag.InputOutput;
 import org.springframework.stereotype.Component;
 
 @Component
-public class CountCommand implements Command {
-    private InputOutput io;
-    int count = 0;
+public class WhoAmICommand implements Command {
+    private final InputOutput io;
 
-    public CountCommand(InputOutput io) {
+    public WhoAmICommand(InputOutput io) {
         this.io = io;
     }
 
     @Override
     public boolean isValid(String input, Game game) {
-        return (input == null ? "" : input).trim().equalsIgnoreCase("count");
+        return input.trim().equalsIgnoreCase("whoami");
     }
 
     @Override
     public void execute(String input, Game game) {
-        count++;
-        io.displayText("You have called the count command " + count + " time" + (count < 2 ? "" : "s"));
+        io.displayText("My name is " + game.getPlayer().getName());
     }
 }

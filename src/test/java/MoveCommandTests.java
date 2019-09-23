@@ -20,7 +20,7 @@ public class MoveCommandTests {
     @Test
     public void execute_should_display_all_words_but_move() {
         // Act
-        target.execute("move to the moon");
+        target.execute("move to the moon", null);
 
         // Assert
         assertEquals("You proceed to the moon.", io.lastText);
@@ -30,7 +30,7 @@ public class MoveCommandTests {
     @Test
     public void execute_should_display_all_words_but_move_with_spaces() {
         // Act
-        target.execute("    move to the moon    ");
+        target.execute("    move to the moon    ", null);
 
         // Assert
         assertEquals("You proceed to the moon.", io.lastText);
@@ -40,7 +40,7 @@ public class MoveCommandTests {
     public void isValid_should_be_true_when_input_is_move() {
 
         // Act
-        var result = target.isValid("move to the moon");
+        var result = target.isValid("move to the moon", null);
 
         // Assert
         assertTrue(result);
@@ -50,7 +50,7 @@ public class MoveCommandTests {
     public void isValid_should_be_true_when_input_is_move_with_spaces() {
 
         // Act
-        var result = target.isValid("   move to the moon   ");
+        var result = target.isValid("   move to the moon   ", null);
 
         // Assert
         assertTrue(result);
@@ -60,7 +60,7 @@ public class MoveCommandTests {
     public void isValid_should_be_true_when_input_is_move_with_caps() {
 
         // Act
-        var result = target.isValid("moVE to the mOOn");
+        var result = target.isValid("moVE to the mOOn", null);
 
         // Assert
         assertTrue(result);
@@ -70,7 +70,7 @@ public class MoveCommandTests {
     public void isValid_should_be_false_when_input_is_foobar() {
 
         // Act
-        var result = target.isValid("foobar");
+        var result = target.isValid("foobar", null);
 
         // Assert
         assertFalse(result);
@@ -80,7 +80,7 @@ public class MoveCommandTests {
     public void isValid_should_be_false_when_input_is_null() {
 
         // Act
-        var result = target.isValid(null);
+        var result = target.isValid(null, null);
 
         // Assert
         assertFalse(result);
@@ -90,7 +90,7 @@ public class MoveCommandTests {
     public void isValid_should_be_false_when_input_is_only_one_word() {
 
         // Act
-        var result = target.isValid("move");
+        var result = target.isValid("move", null);
 
         // Assert
         assertFalse(result);
