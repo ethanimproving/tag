@@ -24,21 +24,23 @@ public class SetNameCommandTests {
         io = new TestInputOutput();
         target = new SetNameCommand(io);
         game = mock(Game.class);
-
-        Player player = new Player();
-        player.setName("@set name=Ethan");
-        player.setHitPoints(50);
-
-        when(game.getPlayer()).thenReturn(player);
     }
 
     @Test
     public void execute_should_set_name() {
+        // Arrange
+        Player player = new Player(null);
+        player.setName("@set name=Ethan");
+        player.setHitPoints(50);
+        player = spy(player);
+
+        when(game.getPlayer()).thenReturn(player);
         // Act
         target.execute("@set name=Ethan", game);
 
 
         // Assert
+        verify(player).setName("Ethan");
         verify(game, times(2)).getPlayer();
         assertEquals("Your name is now Ethan.",  io.lastText);
     }
