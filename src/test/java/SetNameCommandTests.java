@@ -1,12 +1,15 @@
 import org.improving.tag.Game;
+import org.improving.tag.Player;
 import org.improving.tag.SpringContext;
 import org.improving.tag.commands.SetNameCommand;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.configuration.IMockitoConfiguration;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.mockito.Mockito.*;
 
 public class SetNameCommandTests {
 
@@ -20,7 +23,13 @@ public class SetNameCommandTests {
         // Arrange
         io = new TestInputOutput();
         target = new SetNameCommand(io);
-        game = new Game(null, io);
+        game = mock(Game.class);
+
+        Player player = new Player();
+        player.setName("@set name=Ethan");
+        player.setHitPoints(50);
+
+        when(game.getPlayer()).thenReturn(player);
     }
 
     @Test
@@ -28,7 +37,9 @@ public class SetNameCommandTests {
         // Act
         target.execute("@set name=Ethan", game);
 
+
         // Assert
+        verify(game, times(2)).getPlayer();
         assertEquals("Your name is now Ethan.",  io.lastText);
     }
 
