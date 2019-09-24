@@ -5,21 +5,13 @@ import org.improving.tag.InputOutput;
 import org.springframework.stereotype.Component;
 
 @Component
-public class LookCommand implements Command {
+public class LookCommand extends BaseAliasedCommand {
     private InputOutput io;
 
     public LookCommand(InputOutput io) {
+        super("l", "look", "whereami", "where am i", "donde estoy", "?donde estoy?");
         this.io = io;
 //        super("look", "You look around.", io);
-    }
-
-    @Override
-    public boolean isValid(String input, Game game) {
-        return input.trim().equalsIgnoreCase("look") ||
-                input.trim().equalsIgnoreCase("whereami") ||
-                input.trim().equalsIgnoreCase("where am i") ||
-                input.trim().equalsIgnoreCase("donde estoy") ||
-                input.trim().equalsIgnoreCase("?donde estoy?");
     }
 
     @Override
