@@ -79,6 +79,9 @@ public class Game {
     }
 
     private Location buildWorld() {
+
+        //*****ROOMS*****//
+
         var tdh = new Location();
         tdh.setName("The Deathly Hallows");
 
@@ -91,10 +94,56 @@ public class Game {
         var tmcs = new Location();
         tmcs.setName("The Mac & Cheese Shop");
 
+        var ap = new Location();
+        ap.setName("Airport");
+
+        var ict = new Location();
+        ict.setName("The Ice Cream Truck");
+
+        var tm = new Location();
+        tm.setName("The Mountains");
+
+        var tvm = new Location();
+        tvm.setName("The Velvet Moose");
+
+        var tr = new Location();
+        tr.setName("The Reef");
+
+        var mall = new Location();
+        mall.setName("The Mall");
+
+        var md = new Location();
+        md.setName("Mount Doom");
+
+        var tvm = new Location();
+        tvm.setName("The Velvet Moose");
+
+        var vod = new Location();
+        vod.setName("The Volcano of Death");
+
+        //*****PATHS****//
+
         tdh.getExits().add(new Exit("Heaven Ave", tmcs, "heaven", "h", "ave"));
         tdh.getExits().add(new Exit("The Deathly Brownie", td, "brownie", "tdb", "deathly", "the"));
         td.getExits().add(new Exit("Camel Path", ta, "camel", "cp", "path"));
+        td.getExits().add(new Exit("The Dock", ap, "dock", "d", "a"));
+        td.getExits().add(new Exit("Rocky Road", ict, "road", "rr", "rocky"));
         tmcs.getExits().add(new Exit("Highway 121", ta, "121", "hwy", "hwy121", "h121"));
+        tmcs.getExits().add(new Exit("Paradise Rd", tr, "paradise", "dice", "pr", "p"));
+        tmcs.getExits().add(new Exit("Highway 21", vod, "21", "death", "hwy21", "h21"));
+        tr.getExits().add(new Exit("The Scenic Route", tvm, "scenic", "route", "tsr", "s"));
+        tr.getExits().add(new Exit("the city walk", mall, "walk", "city", "mall", "tcw", "w"));
+        ta.getExits().add(new Exit("Amaz-ing Moose", tvm, "moose", "am", "path", "a"));
+        tvm.getExits().add(new Exit("The Pudding Slide", ap, "slide", "pudding", "tps", "p"));
+        tvm.getExits().add(new Exit("The Front Door", ta, "front", "door", "f", "tfd"));
+        ap.getExits().add(new Exit("flight 121", tm, "flight", "121", "f121"));
+        ap.getExits().add(new Exit("Flight to the Mall", mall, "mall", "f", "fttm", "m"));
+        tm.getExits().add(new Exit("The Lava Flow", vod, "death", "lava", "flow", "l", "f", "tlf"));
+        tm.getExits().add(new Exit("The narrow trail", md, "doom", "narrow", "trail", "n", "t", "tnt"));
+        tm.getExits().add(new Exit("the plane", vod, "plane", "p", "tp", "amazon"));
+        tm.getExits().add(new Exit("bike trail", tr, "bike", "bt", "b", "t", "reef"));
+        ict.getExits().add(new Exit("Magic Portal", md, "magic", "portal", "mp", "m"));
+        mall.getExits().add(new Exit("Path to Doom", md, "doom", "path", "ptd", "p"));
 
 
         return tdh;
