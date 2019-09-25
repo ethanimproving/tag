@@ -13,14 +13,16 @@ public class Game {
     private InputOutput io;
     private Player p;
     private Location startingLocation;
+    private final SaveGameFactory saveFactory;
 
 
     // Spring component is inserting the arguments for this constructor itself.
-    public Game(Command[] commands, InputOutput io) {
+    public Game(Command[] commands, InputOutput io, SaveGameFactory saveFactory) {
         startingLocation = buildWorld();
         this.commands = commands;
         this.io = io;
         this.p = new Player(startingLocation);
+        this.saveFactory = saveFactory;
     }
 
     public Location getStartingLocation() {
@@ -60,6 +62,7 @@ public class Game {
             if (null != validCommand) {
                 validCommand.execute(input, this);
             } else if (input.equalsIgnoreCase("exit")) {
+                saveFactory.save(this);
                 io.displayText("Well, leave then...");
                 loop = false;
             } else {
@@ -115,9 +118,6 @@ public class Game {
         var md = new Location();
         md.setName("Mount Doom");
 
-        var tvm = new Location();
-        tvm.setName("The Velvet Moose");
-
         var vod = new Location();
         vod.setName("The Volcano of Death");
 
@@ -144,7 +144,8 @@ public class Game {
         tm.getExits().add(new Exit("bike trail", tr, "bike", "bt", "b", "t", "reef"));
         ict.getExits().add(new Exit("Magic Portal", md, "magic", "portal", "mp", "m"));
         mall.getExits().add(new Exit("Path to Doom", md, "doom", "path", "ptd", "p"));
-
+        mall.getExits().add(new Exit("An escalator of doom", vod, "death", "escalator", "aeod", "e"));
+        md.getExits().add(new Exit("The Cap", mall, "mall", "cab", "tc", "c"));
 
         return tdh;
     }
