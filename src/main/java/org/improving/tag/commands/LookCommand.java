@@ -25,5 +25,10 @@ public class LookCommand extends BaseAliasedCommand {
             io.displayText("  " + exit.getName());
         }
 
+        if(location.getAdversary() != null) {
+            io.displayText("");
+            io.displayText("Watch out! " + location.getAdversary().getName() + " is right behind you!");
+        }
+
     }
 }

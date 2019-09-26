@@ -45,6 +45,10 @@ public class MoveCommand implements Command {
             io.displayText("I can't find that way out.");
             return;
         }
+        if (game.getPlayer().getLocation().getAdversary() != null) {
+            io.displayText("YOU SHALL NOT PASS.");
+            return;
+        }
         game.getPlayer().setLocation(exit.getDestination());
         io.displayText("You travel " + exit.getName() + ".");
     }

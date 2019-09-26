@@ -1,6 +1,5 @@
 package org.improving.tag;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,6 +8,7 @@ public class Location {
     private String description = "";
     private List<String> tags = new ArrayList<>();
     private List<Exit> exits = new ArrayList<>();
+    private Adversary adversary;
 
 
     public String getName() {
@@ -17,6 +17,14 @@ public class Location {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Adversary getAdversary() {
+        return adversary;
+    }
+
+    public void setAdversary(Adversary adversary) {
+        this.adversary = adversary;
     }
 
     public String getDescription() {
