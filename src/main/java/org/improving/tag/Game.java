@@ -1,9 +1,11 @@
 package org.improving.tag;
 
-import org.improving.tag.commands.*;
+import org.improving.tag.commands.Command;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Component
 public class Game {
@@ -13,7 +15,8 @@ public class Game {
     private InputOutput io;
     private Player p;
     private Location startingLocation;
-    private final SaveGameFactory saveFactory;
+    private List<Location> locationList = new ArrayList<>();
+    public final SaveGameFactory saveFactory;
 
 
     // Spring component is inserting the arguments for this constructor itself.
@@ -87,39 +90,51 @@ public class Game {
 
         var tdh = new Location();
         tdh.setName("The Deathly Hallows");
+        this.locationList.add(tdh);
 
         var td = new Location();
         td.setName("The Desert");
+        this.locationList.add(td);
 
         var ta = new Location();
         ta.setName("The Amazon");
+        this.locationList.add(ta);
 
         var tmcs = new Location();
         tmcs.setName("The Mac & Cheese Shop");
+        this.locationList.add(tmcs);
 
         var ap = new Location();
         ap.setName("Airport");
+        this.locationList.add(ap);
 
         var ict = new Location();
         ict.setName("The Ice Cream Truck");
+        this.locationList.add(ict);
 
         var tm = new Location();
         tm.setName("The Mountains");
+        this.locationList.add(tm);
 
         var tvm = new Location();
         tvm.setName("The Velvet Moose");
+        this.locationList.add(tvm);
 
         var tr = new Location();
         tr.setName("The Reef");
+        this.locationList.add(tr);
 
         var mall = new Location();
         mall.setName("The Mall");
+        this.locationList.add(mall);
 
         var md = new Location();
         md.setName("Mount Doom");
+        this.locationList.add(md);
 
         var vod = new Location();
         vod.setName("The Volcano of Death");
+        this.locationList.add(vod);
 
         //*****PATHS****//
 
@@ -147,7 +162,17 @@ public class Game {
         mall.getExits().add(new Exit("An escalator of doom", vod, "death", "escalator", "aeod", "e"));
         md.getExits().add(new Exit("The Cap", mall, "mall", "cab", "tc", "c"));
 
+
         return tdh;
     }
 
+    public Location getLocationOf(String intendedLocationName) {
+        for (Location location : locationList) {
+            if (intendedLocationName.equalsIgnoreCase(location.getName())) {
+                return location;
+            }
+        }
+
+        return null;
+    }
 }
