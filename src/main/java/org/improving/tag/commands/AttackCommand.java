@@ -9,11 +9,13 @@ import java.util.Random;
 @Component
 public class AttackCommand extends BaseAliasedCommand {
 
+    private final Random r;
     InputOutput io;
 
-    public AttackCommand(InputOutput io) {
+    public AttackCommand(InputOutput io, Random r) {
         super("attack", "a", "mock");
         this.io = io;
+        this.r = r;
     }
 
     @Override
@@ -22,7 +24,7 @@ public class AttackCommand extends BaseAliasedCommand {
         if (adversary == null) {
             io.displayText("Attack what?");
         } else {
-            int random = new Random().nextInt(100) + 1;
+            int random = r.nextInt(100) + 1;
             if (random <= 20) {
                 adversary.setDamageTaken(adversary.getDamageTaken() + 10);
                 adversary.setHitPoints(adversary.getMaxHitPoints() - adversary.getDamageTaken());
