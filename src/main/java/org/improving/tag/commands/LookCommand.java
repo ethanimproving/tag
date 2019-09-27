@@ -11,7 +11,6 @@ public class LookCommand extends BaseAliasedCommand {
     public LookCommand(InputOutput io) {
         super("l", "look", "whereami", "where am i", "donde estoy", "?donde estoy?");
         this.io = io;
-//        super("look", "You look around.", io);
     }
 
     @Override

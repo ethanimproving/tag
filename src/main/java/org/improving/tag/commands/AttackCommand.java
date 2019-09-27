@@ -7,17 +7,13 @@ import org.springframework.stereotype.Component;
 import java.util.Random;
 
 @Component
-public class Attack implements Command {
+public class AttackCommand extends BaseAliasedCommand {
 
     InputOutput io;
 
-    public Attack(InputOutput io) {
+    public AttackCommand(InputOutput io) {
+        super("attack", "a", "mock");
         this.io = io;
-    }
-
-    @Override
-    public boolean isValid(String input, Game game) {
-        return (input == null ? "" : input).trim().equalsIgnoreCase("attack");
     }
 
     @Override
@@ -26,7 +22,7 @@ public class Attack implements Command {
         if (adversary == null) {
             io.displayText("Attack what?");
         } else {
-            int random = new Random().nextInt(100);
+            int random = new Random().nextInt(100) + 1;
             if (random <= 20) {
                 adversary.setDamageTaken(adversary.getDamageTaken() + 10);
                 adversary.setHitPoints(adversary.getMaxHitPoints() - adversary.getDamageTaken());
