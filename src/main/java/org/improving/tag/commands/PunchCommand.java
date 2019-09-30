@@ -6,6 +6,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class PunchCommand extends BaseEmoteCommand {
     public PunchCommand(InputOutput io) {
-        super("punch", "You have been ninja punched! FATALITY.", io);
+        super("You have been ninja punched! FATALITY.", io, "punch");
     }
 }
