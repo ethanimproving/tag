@@ -13,7 +13,7 @@ public class AttackCommand extends BaseAliasedCommand {
     InputOutput io;
 
     public AttackCommand(InputOutput io, Random r) {
-        super("attack", "a", "mock");
+        super(io,"attack", "a", "mock");
         this.io = io;
         this.r = r;
     }

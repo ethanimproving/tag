@@ -62,15 +62,17 @@ public class Game {
             String input = io.receiveInput();
             Command validCommand = getValidCommand(input);
 
-            if (null != validCommand) {
-                validCommand.execute(input, this);
-            } else if (input.equalsIgnoreCase("exit")) {
-                saveFactory.save(this);
-                io.displayText("Well, leave then...");
-                loop = false;
-            } else {
-                io.displayText("Huh? I don't understand.");
-            }
+                if (null != validCommand) {
+                    try {
+                        validCommand.execute(input, this);
+                    } catch (IllegalStateException ex) {
+                        loop = false;
+                    }
+
+                } else {
+                    io.displayText("Huh? I don't understand.");
+                }
+
         } while (loop);
         this.setEndTime(new Date());
     }
@@ -90,7 +92,6 @@ public class Game {
 
         var tdh = new Location();
         tdh.setName("The Deathly Hallows");
-        tdh.setAdversary(new Adversary("Sauron"));
         this.locationList.add(tdh);
 
         var td = new Location();
@@ -131,6 +132,7 @@ public class Game {
 
         var md = new Location();
         md.setName("Mount Doom");
+        md.setAdversary(new Adversary("Sauron"));
         this.locationList.add(md);
 
         var vod = new Location();
