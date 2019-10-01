@@ -1,6 +1,7 @@
 package org.improving.tag;
 
 import org.improving.tag.commands.Command;
+import org.improving.tag.items.UniqueItems;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -65,7 +66,7 @@ public class Game {
                 if (null != validCommand) {
                     try {
                         validCommand.execute(input, this);
-                    } catch (IllegalStateException ex) {
+                    } catch (GameExitException ex) {
                         loop = false;
                     }
 
@@ -104,6 +105,7 @@ public class Game {
 
         var tmcs = new Location();
         tmcs.setName("The Mac & Cheese Shop");
+        tmcs.setTreasureChest(new TreasureChest(UniqueItems.THE_ONE_RING, "A Kraft box"));
         this.locationList.add(tmcs);
 
         var ap = new Location();

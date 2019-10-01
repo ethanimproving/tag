@@ -2,6 +2,7 @@ package org.improving.tag.commands;
 
 import org.improving.tag.Game;
 import org.improving.tag.InputOutput;
+import org.improving.tag.TreasureChest;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -18,11 +19,26 @@ public class LookCommand extends BaseAliasedCommand {
         var location = game.getPlayer().getLocation();
         io.displayText(location.getName());
         io.displayText(location.getDescription());
-        io.displayText("");
+        io.displayNewLine();
+
+        if(location.getTreasureChest() != TreasureChest.NO_TREASURE) {
+            io.displayText("Treasure:");
+            io.displayText("  " + location.getTreasureChest());
+            io.displayNewLine();
+        }
+
+
         io.displayText("Exits:");
         for ( var exit : location.getExits()) {
             io.displayText("  " + exit.getName());
         }
+
+
+//        if(location.openTreasureChest().getDescription() != "") {
+//            io.displayNewLine();
+//            io.displayText("Treasure!");
+//            io.displayText("  " + location.getTreasureChest());
+//        }
 
         if(location.getAdversary() != null) {
             io.displayText("");

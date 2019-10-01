@@ -5,12 +5,10 @@ import org.improving.tag.InputOutput;
 
 public abstract class BaseEmoteCommand extends BaseAliasedCommand {
     private String cmdResponse;
-    private InputOutput io;
 
     public BaseEmoteCommand(String cmdResponse, InputOutput io, String...aliases) {
         super(io, aliases);
         this.cmdResponse = cmdResponse;
-        this.io = io;
     }
 
     @Override

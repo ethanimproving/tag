@@ -9,9 +9,12 @@ public class TestInputOutput implements InputOutput {
     }
 
     @Override
-    public void displayText(String text) {
-        this.lastText = text;
+    public void displayText(Object text) {
+        this.lastText = text.toString();
     }
+
+    @Override
+    public void displayNewLine() {}
 
     @Override
     public void displayPrompt(String prompt) {

@@ -9,7 +9,7 @@ import java.util.List;
 
 public abstract class BaseAliasedCommand implements Command {
     private List<String> aliases = new ArrayList<>();
-    private final InputOutput io;
+    protected final InputOutput io;
 
     public BaseAliasedCommand(InputOutput io, String...aliases) {
         this.io = io;
@@ -18,9 +18,14 @@ public abstract class BaseAliasedCommand implements Command {
 
     @Override
     public boolean isValid(String input, Game game) {
-        var trimmedInput = getCommandPart(input).trim();
-        return aliases.stream()
-                .anyMatch(trimmedInput::equalsIgnoreCase);
+        try {
+            var trimmedInput = getCommandPart(input).trim();
+            return aliases.stream()
+                    .anyMatch(trimmedInput::equalsIgnoreCase);
+        } catch (UnsupportedOperationException ex) {
+            return false;
+        }
+
     }
 
     public void childExecute(String input, Game game) { }
