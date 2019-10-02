@@ -3,13 +3,14 @@ package org.improving.tag;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 public class Exit {
     private String name;
     private Location destination;
     private List<String> aliases = new ArrayList<>();
 
-    public Exit() {}
+    public Exit() { }
 
     public Exit(String name, Location destination, String...aliases) {
         this.name = name;
@@ -35,5 +36,34 @@ public class Exit {
 
     public List<String> getAliases() {
         return aliases;
+    }
+
+    @Override
+    public String toString() {
+        return this.getName();
+    }
+
+//    @Override
+//    public int hashCode() {
+//        int hash = 7;
+//        hash = (31 * hash) + (this.getName() == null ? 0 : getName().hashCode());
+//        hash = (31 * hash) + (this.getDestination() == null ? 0 : getDestination().hashCode());
+//        return hash;
+//    }
+
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, destination);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Exit) {
+            Exit exit = (Exit)obj;
+            return this.getName().equals(exit.getName()) &&
+                    this.getDestination().equals(exit.getDestination());
+        }
+        return super.equals(obj);
     }
 }

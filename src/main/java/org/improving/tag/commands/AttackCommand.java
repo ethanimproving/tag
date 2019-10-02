@@ -25,14 +25,14 @@ public class AttackCommand extends BaseAliasedCommand {
             io.displayText("Attack what?");
         } else {
             int random = r.nextInt(100) + 1;
-            if (random <= 20) {
+            if (random <= 50) {
                 adversary.setDamageTaken(adversary.getDamageTaken() + 10);
                 adversary.setHitPoints(adversary.getMaxHitPoints() - adversary.getDamageTaken());
                 io.displayText(adversary.getName() + "'s Remaining Health: " + adversary.getHitPoints());
             } else {
                 io.displayText("Attack Missed!");
             }
-            if (adversary.getHitPoints() == 0) {
+            if (adversary.getHitPoints() <= 0) {
                 var advItem = adversary.getInventory().getItem();
 
                 io.displayText("You have defeated " + adversary.getName() + ". " + advItem + " was found on his dead corpse. #winning");

@@ -68,5 +68,18 @@ public class Location {
     public TreasureChest getTreasureChest() {
         return treasureChest;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Location) {
+            Location location = (Location)obj;
+            return this.getName().equals(location.getName()) &&
+                    this.getDescription().equals(location.getDescription());
+        }
+        return super.equals(obj);
+    }
+
 }
+
+
 
