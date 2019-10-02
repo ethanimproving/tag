@@ -32,6 +32,13 @@ public class AttackCommand extends BaseAliasedCommand {
             } else {
                 io.displayText("Attack Missed!");
             }
+            if (adversary.getHitPoints() == 0) {
+                var advItem = adversary.getInventory().getItem();
+
+                io.displayText("You have defeated " + adversary.getName() + ". " + advItem + " was found on his dead corpse. #winning");
+                game.getPlayer().getInventory().addItem(advItem);
+                game.getPlayer().getLocation().setAdversary(null);
+            }
         }
     }
 }

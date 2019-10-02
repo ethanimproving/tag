@@ -6,6 +6,8 @@ public class Adversary {
     private int damageTaken;
     private int attackDamage;
     private int maxHitPoints;
+    private Inventory inventory;
+
 
     public Adversary(String name) {
         this.name = name;
@@ -13,6 +15,15 @@ public class Adversary {
         this.hitPoints = this.maxHitPoints - this.damageTaken;
         this.damageTaken = 0;
         this.attackDamage = 15;
+        this.inventory = new Inventory();
+    }
+
+    public Inventory getInventory() {
+        return inventory;
+    }
+
+    public void setInventory(Inventory inventory) {
+        this.inventory = inventory;
     }
 
     public int getMaxHitPoints() {

@@ -34,14 +34,8 @@ public class LookCommand extends BaseAliasedCommand {
         }
 
 
-//        if(location.openTreasureChest().getDescription() != "") {
-//            io.displayNewLine();
-//            io.displayText("Treasure!");
-//            io.displayText("  " + location.getTreasureChest());
-//        }
-
         if(location.getAdversary() != null) {
-            io.displayText("");
+            io.displayNewLine();
             io.displayText("Watch out! " + location.getAdversary().getName() + " is right behind you!");
         }
 

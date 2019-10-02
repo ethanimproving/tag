@@ -20,8 +20,12 @@ public class Inventory {
         String displayString = "You have these items: ";
 
         for (Item item : items) {
-            displayString += "\n" + item;
+            displayString += "\n  " + item;
         }
         return displayString;
+    }
+
+    public Item getItem() {
+        return items.get(0);
     }
 }

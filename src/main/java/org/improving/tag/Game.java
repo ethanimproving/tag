@@ -97,6 +97,9 @@ public class Game {
 
         var td = new Location();
         td.setName("The Desert");
+        td.setAdversary(new Adversary("Mr. Potato Head"));
+        td.getAdversary().getInventory().addItem(UniqueItems.BLUE_SHELL);
+
         this.locationList.add(td);
 
         var ta = new Location();
