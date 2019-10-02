@@ -1,5 +1,7 @@
 package org.improving.tag;
 
+import org.improving.tag.items.UniqueItems;
+
 public class Player {
     private String name = "The Player";
     private int hitPoints = 100;
@@ -8,6 +10,9 @@ public class Player {
 
     public Player(Location location) {
         this.location = location;
+        this.getInventory().addItem(UniqueItems.EGGO_WAFFLE);
+        this.getInventory().addItem(UniqueItems.EVERLASTING_GOBSTOPPER);
+        this.getInventory().addItem(UniqueItems.UNFORGETTABLE_MUSHROOM);
     }
 
     public Inventory getInventory() {

@@ -1,6 +1,7 @@
 package org.improving.tag;
 
 import org.improving.tag.items.Item;
+import org.improving.tag.items.ItemComparator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +19,8 @@ public class Inventory {
 
     public String getInventoryDisplay() {
         String displayString = "You have these items: ";
-
+        // Sort items alphabetically
+        items.sort(new ItemComparator());
         for (Item item : items) {
             displayString += "\n  " + item;
         }
