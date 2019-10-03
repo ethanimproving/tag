@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Stream;
 
 @Component
 public class Game {
@@ -79,12 +80,7 @@ public class Game {
     }
 
     private Command getValidCommand(String input) {
-        for (Command command : commands) {
-            if (command.isValid(input, this)) {
-                return command;
-            }
-        }
-        return null;
+        return Stream.of(commands).filter(cmd -> cmd.isValid(input, this)).findFirst().orElse(null);
     }
 
     private Location buildWorld() {

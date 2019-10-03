@@ -17,17 +17,18 @@ public class Inventory {
         items.add(item);
     }
 
-    public String getInventoryDisplay() {
-        String displayString = "You have these items: ";
-        // Sort items alphabetically
-        items.sort(new ItemComparator());
-        for (Item item : items) {
-            displayString += "\n  " + item;
-        }
-        return displayString;
-    }
-
     public Item getItem() {
         return items.get(0);
+    }
+
+    public String getInventoryDisplay() {
+        // Sort items alphabetically
+        var alex = items.stream().sorted(new ItemComparator()).map(i -> "\n  " + i)
+                .reduce("You have these items: ", (answer, s) -> answer += s);
+
+        var ethan = items.stream().map(i -> i.getName()).sorted()
+                .reduce("You have these items: ", (str1, str2) -> str1 + "\n  " + str2);
+
+        return alex;
     }
 }
