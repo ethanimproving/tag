@@ -23,12 +23,7 @@ public class Inventory {
 
     public String getInventoryDisplay() {
         // Sort items alphabetically
-        var alex = items.stream().sorted(new ItemComparator()).map(i -> "\n  " + i)
+        return items.stream().sorted(new ItemComparator()).map(i -> "\n  " + i)
                 .reduce("You have these items: ", (answer, s) -> answer += s);
-
-        var ethan = items.stream().map(i -> i.getName()).sorted()
-                .reduce("You have these items: ", (str1, str2) -> str1 + "\n  " + str2);
-
-        return alex;
     }
 }
