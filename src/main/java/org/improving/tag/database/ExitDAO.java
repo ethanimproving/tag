@@ -5,6 +5,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
+import java.util.Arrays;
 import java.util.List;
 
 @Component
@@ -21,8 +22,8 @@ public class ExitDAO {
 
     public List<Exit> findExitsByOriginId(int id) {
         try {
-            List<Exit> exits = jdbcTemplate.query("select e.Id as Id, e.Name as Name, e.DestinationId as Destination " +
-                            "from location as l left join locationexit as e on l.Id = e.OriginId where e.OriginId = " + id,
+            List<Exit> exits = jdbcTemplate.query("select e.Id as Id, e.Name as Name, e.DestinationId as Destination," +
+                            " e.Aliases as Aliases from location as l left join locationexit as e on l.Id = e.OriginId where e.OriginId = " + id,
                     (result, rowNum) -> {
                         Exit exit = new Exit();
                         exit.setId(result.getInt("Id"));
@@ -30,6 +31,9 @@ public class ExitDAO {
 
                         int destinationID = result.getInt("Destination");
                         exit.setDestination(locationDAO.findAll().get(destinationID));
+
+                        List<String> aliases = Arrays.asList(result.getString("Aliases").split(","));
+                        exit.setAliases(aliases);
 
                         return exit;
                     });

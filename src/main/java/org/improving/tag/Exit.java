@@ -23,6 +23,10 @@ public class Exit {
         return id;
     }
 
+    public void setAliases(List<String> aliases) {
+        this.aliases = aliases;
+    }
+
     public void setId(int id) {
         this.id = id;
     }
