@@ -22,8 +22,7 @@ public class ExitDAO {
 
     public List<Exit> findExitsByOriginId(int id) {
         try {
-            List<Exit> exits = jdbcTemplate.query("select e.Id as Id, e.Name as Name, e.DestinationId as Destination," +
-                            " e.Aliases as Aliases from location as l left join locationexit as e on l.Id = e.OriginId where e.OriginId = " + id,
+            List<Exit> exits = jdbcTemplate.query("select Name, Aliases, OriginId as Id, DestinationId as Destination from locationexit where id = " + id,
                     (result, rowNum) -> {
                         Exit exit = new Exit();
                         exit.setId(result.getInt("Id"));
