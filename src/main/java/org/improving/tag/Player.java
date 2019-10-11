@@ -12,7 +12,7 @@ public class Player {
         this.location = location;
         this.getInventory().addItem(UniqueItems.EGGO_WAFFLE);
         this.getInventory().addItem(UniqueItems.EVERLASTING_GOBSTOPPER);
-        this.getInventory().addItem(UniqueItems.UNFORGETTABLE_MUSHROOM);
+        this.getInventory().addItem(UniqueItems .UNFORGETTABLE_MUSHROOM);
     }
 
     public Inventory getInventory() {
