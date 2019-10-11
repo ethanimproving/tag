@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class Exit {
+    private int id;
     private String name;
     private Location destination;
     private List<String> aliases = new ArrayList<>();
@@ -16,6 +17,14 @@ public class Exit {
         this.name = name;
         this.destination = destination;
         this.aliases.addAll(Arrays.asList(aliases));
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {

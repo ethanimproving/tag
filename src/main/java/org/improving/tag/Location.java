@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Location {
+    private int id;
     private String name = "";
     private String description = "";
     private List<String> tags = new ArrayList<>();
@@ -24,6 +25,14 @@ public class Location {
 
     public void setTreasureChest(TreasureChest treasureChest) {
         this.treasureChest = treasureChest;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -79,6 +88,14 @@ public class Location {
         return super.equals(obj);
     }
 
+    @Override
+    public String toString() {
+        return this.getName();
+    }
+
+    public void setExits(List<Exit> exits) {
+        this.exits = exits;
+    }
 }
 
 

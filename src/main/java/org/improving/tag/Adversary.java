@@ -1,5 +1,7 @@
 package org.improving.tag;
 
+import org.improving.tag.items.Item;
+
 public class Adversary {
     private String name;
     private int hitPoints;
@@ -7,7 +9,10 @@ public class Adversary {
     private int attackDamage;
     private int maxHitPoints;
     private Inventory inventory;
+    private Item item;
 
+    public Adversary() {
+    }
 
     public Adversary(String name) {
         this.name = name;
@@ -64,5 +69,13 @@ public class Adversary {
 
     public void setAttackDamage(int attackDamage) {
         this.attackDamage = attackDamage;
+    }
+
+    public Item getItem() {
+        return item;
+    }
+
+    public void setItem(Item item) {
+        this.item = item;
     }
 }

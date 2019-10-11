@@ -1,5 +1,7 @@
 package org.improving.tag;
 
+import org.improving.tag.database.ExitDAO;
+import org.improving.tag.database.LocationDAO;
 import org.improving.tag.items.UniqueItems;
 import org.springframework.stereotype.Component;
 
@@ -9,12 +11,42 @@ import java.util.List;
 @Component
 public class WorldBuilder {
     private List<Location> locationList = new ArrayList<>();
+    private final LocationDAO locationDAO;
+    private final ExitDAO exitDAO;
+
+    public WorldBuilder(LocationDAO locationDAO, ExitDAO exitDAO) {
+        this.locationDAO = locationDAO;
+        this.exitDAO = exitDAO;
+    }
 
     public List<Location> getLocationList() {
         return locationList;
     }
 
     public Location buildWorld() {
+
+        try {
+            List<Location> locations = locationDAO.findAll();
+
+            for (Location location : locations) {
+                List<Exit> exits = exitDAO.findExitsByOriginId(location.getId());
+                location.setExits(exits);
+            }
+
+            System.out.println(locations.size());
+            System.out.println(locations);
+            locationList = locations;
+            if (null == locationList) {
+                return buildHardCodedWorld();
+            }
+            return locationList.get(1);
+        } catch (Exception e) {
+            return buildHardCodedWorld();
+        }
+
+    }
+
+    public Location buildHardCodedWorld() {
 
         //*****ROOMS*****//
 
