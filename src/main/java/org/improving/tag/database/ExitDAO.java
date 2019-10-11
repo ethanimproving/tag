@@ -22,13 +22,13 @@ public class ExitDAO {
 
     public List<Exit> findExitsByOriginId(int id) {
         try {
-            List<Exit> exits = jdbcTemplate.query("select Name, Aliases, OriginId as Id, DestinationId as Destination from locationexit where id = " + id,
+            List<Exit> exits = jdbcTemplate.query("select * from locationexit where OriginId = ?", new Object[] {id},
                     (result, rowNum) -> {
                         Exit exit = new Exit();
-                        exit.setId(result.getInt("Id"));
+                        exit.setId(result.getInt("OriginId"));
                         exit.setName(result.getString("Name"));
 
-                        int destinationID = result.getInt("Destination");
+                        int destinationID = result.getInt("DestinationId");
                         exit.setDestination(locationDAO.findAll().get(destinationID));
 
                         List<String> aliases = Arrays.asList(result.getString("Aliases").split(","));
