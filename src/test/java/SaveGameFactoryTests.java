@@ -1,6 +1,7 @@
 import org.improving.tag.FileSystemAdapter;
 import org.improving.tag.Game;
 import org.improving.tag.SaveGameFactory;
+import org.improving.tag.WorldBuilder;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
@@ -19,13 +20,18 @@ public class SaveGameFactoryTests {
     private FileSystemAdapter fsa;
     private SaveGameFactory target;
     private Game g;
+    private WorldBuilder worldBuilder;
+
+    public SaveGameFactoryTests(WorldBuilder worldBuilder) {
+        this.worldBuilder = worldBuilder;
+    }
 
     @BeforeEach
     public void setup() {
         var io = new TestInputOutput();
         FileSystemAdapter fsa = mock(FileSystemAdapter.class);
         var target = new SaveGameFactory(fsa, io);
-        var g = new Game(null, io, target);
+        var g = new Game(null, io, target, worldBuilder);
     }
 
 
