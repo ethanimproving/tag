@@ -2,6 +2,7 @@ package org.improving.tag;
 
 import org.improving.tag.items.Item;
 import org.improving.tag.items.ItemComparator;
+import org.improving.tag.items.UniqueItems;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +19,8 @@ public class Inventory {
     }
 
     public Item getItem() {
-        return items.get(0);
+        if (items.size() > 0) return items.get(0);
+        else return UniqueItems.NOTHING;
     }
 
     public String getInventoryDisplay() {

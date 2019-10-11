@@ -23,16 +23,16 @@ public class LocationDAO {
 
     public List<Location> findAll() {
         try {
-            List<Location> locations = jdbcTemplate.query("select * from location as l left join adversary as a on l.AdversaryId = a.Id",
+            List<Location> locations = jdbcTemplate.query("SELECT l.Id as LocId, l.Name as LocName, l.Description, l.AdversaryId, a.Id as AdvId, a.Name as AdvName, a.HitPoints, a.DamageTaken, a.AttackDamage, a.DropItem FROM location l LEFT JOIN adversary a ON l.AdversaryId = a.Id",
                     (result, rowNum) -> {
                 Location location = new Location();
-                location.setId(result.getInt("Id"));
-                location.setName(result.getString("Name"));
+                location.setId(result.getInt("LocId"));
+                location.setName(result.getString("LocName"));
                 location.setDescription(result.getString("Description"));
                 Integer adversaryId = result.getInt("AdversaryId");
                 if (adversaryId != null) {
                     Adversary adversary = new Adversary();
-                    adversary.setName(result.getString("Name"));
+                    adversary.setName(result.getString("AdvName"));
                     adversary.setHitPoints(result.getInt("HitPoints"));
                     adversary.setDamageTaken(result.getInt("DamageTaken"));
                     String dropItem = result.getString("DropItem");
