@@ -41,6 +41,7 @@ public class WorldBuilder {
             }
             return locationList.get(1);
         } catch (Exception e) {
+            e.printStackTrace();
             return buildHardCodedWorld();
         }
 

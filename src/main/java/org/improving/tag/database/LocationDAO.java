@@ -32,24 +32,17 @@ public class LocationDAO {
                 location.setDescription(result.getString("Description"));
                 if (result.getString("AdversaryId") != null) {
                     EntityManager em = JPAUtility.getEntityManager();
-                    var Adversary = em.find(Adversary.class, Integer.parseInt(result.getString("AdversaryId")));
+                    var Adversary = em.find(Adversary.class, Long.parseLong(result.getString("AdversaryId")));
 
                     Integer adversaryId = result.getInt("AdversaryId");
                     Adversary adversary = new Adversary();
                     adversary.setName(result.getString("AdvName"));
                     adversary.setHitPoints(result.getInt("HitPoints"));
                     adversary.setDamageTaken(result.getInt("DamageTaken"));
+
+
                     String dropItem = result.getString("DropItem");
-
-
-                    if (null != dropItem) {
-                        adversary.setItem(Arrays
-                                .stream(UniqueItems.values())
-                                        .filter(item -> item.getName().equals(dropItem))
-                        .findFirst()
-                        .orElse(null));
-                        location.setAdversary(adversary);
-                    }
+                    location.setAdversary(adversary);
 
                 }
                 return location;

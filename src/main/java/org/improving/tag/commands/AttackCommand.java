@@ -27,7 +27,7 @@ public class AttackCommand extends BaseAliasedCommand {
             int random = r.nextInt(100) + 1;
             if (random <= 50) {
                 adversary.setDamageTaken(adversary.getDamageTaken() + 10);
-                adversary.setHitPoints(adversary.getMaxHitPoints() - adversary.getDamageTaken());
+                adversary.setHitPoints(100 - adversary.getDamageTaken());
                 io.displayText(adversary.getName() + "'s Remaining Health: " + adversary.getHitPoints());
             } else {
                 io.displayText("Attack Missed!");

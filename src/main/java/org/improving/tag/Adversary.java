@@ -1,16 +1,15 @@
 package org.improving.tag;
 
 import org.improving.tag.items.Item;
+import org.improving.tag.items.UniqueItems;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Transient;
+import javax.persistence.*;
+import java.util.Arrays;
 
 @Entity(name = "adversary")
 public class Adversary {
     @Id
-    private int id;
+    private long id;
 
     @Column(name = "Name")
     private String name;
@@ -24,14 +23,17 @@ public class Adversary {
     @Column(name = "AttackDamage")
     private int attackDamage;
 
+    @Transient
     private int maxHitPoints;
+
+    @Transient
     private Inventory inventory;
 
     @Column(name = "DropItem")
     private String dropItemDb;
 
     @Transient
-    private Item item;
+    private Item item = UniqueItems.NOTHING;
 
     public Adversary() {
     }
@@ -107,5 +109,16 @@ public class Adversary {
 
     public void setDropItemDb(String dropItemDb) {
         this.dropItemDb = dropItemDb;
+    }
+
+    @PostLoad
+    public void postLoad() {
+        if (null != dropItemDb) {
+            this.setItem(Arrays
+                    .stream(UniqueItems.values())
+                    .filter(item -> item.getName().equals(dropItemDb))
+                    .findFirst()
+                    .orElse(null));
+        }
     }
 }
