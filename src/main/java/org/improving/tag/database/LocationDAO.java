@@ -7,6 +7,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
+import javax.persistence.EntityManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Arrays;
@@ -29,13 +30,18 @@ public class LocationDAO {
                 location.setId(result.getInt("LocId"));
                 location.setName(result.getString("LocName"));
                 location.setDescription(result.getString("Description"));
-                Integer adversaryId = result.getInt("AdversaryId");
-                if (adversaryId != null) {
+                if (result.getString("AdversaryId") != null) {
+                    EntityManager em = JPAUtility.getEntityManager();
+                    var Adversary = em.find(Adversary.class, Integer.parseInt(result.getString("AdversaryId")));
+
+                    Integer adversaryId = result.getInt("AdversaryId");
                     Adversary adversary = new Adversary();
                     adversary.setName(result.getString("AdvName"));
                     adversary.setHitPoints(result.getInt("HitPoints"));
                     adversary.setDamageTaken(result.getInt("DamageTaken"));
                     String dropItem = result.getString("DropItem");
+
+
                     if (null != dropItem) {
                         adversary.setItem(Arrays
                                 .stream(UniqueItems.values())

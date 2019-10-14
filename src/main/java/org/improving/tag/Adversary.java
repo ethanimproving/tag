@@ -2,13 +2,35 @@ package org.improving.tag;
 
 import org.improving.tag.items.Item;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Transient;
+
+@Entity(name = "adversary")
 public class Adversary {
+    @Id
+    private int id;
+
+    @Column(name = "Name")
     private String name;
+
+    @Column(name = "HitPoints")
     private int hitPoints;
+
+    @Column(name = "DamageTaken")
     private int damageTaken;
+
+    @Column(name = "AttackDamage")
     private int attackDamage;
+
     private int maxHitPoints;
     private Inventory inventory;
+
+    @Column(name = "DropItem")
+    private String dropItemDb;
+
+    @Transient
     private Item item;
 
     public Adversary() {
@@ -77,5 +99,13 @@ public class Adversary {
 
     public void setItem(Item item) {
         this.item = item;
+    }
+
+    public String getDropItemDb() {
+        return dropItemDb;
+    }
+
+    public void setDropItemDb(String dropItemDb) {
+        this.dropItemDb = dropItemDb;
     }
 }
