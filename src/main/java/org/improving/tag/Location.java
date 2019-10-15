@@ -20,7 +20,8 @@ public class Location {
     @Transient
     private List<String> tags = new ArrayList<>();
 
-    @Transient
+    // mabbedBy property Exit class found in property datatype
+    @OneToMany(mappedBy = "origin")
     private List<Exit> exits = new ArrayList<>();
 
     @ManyToOne

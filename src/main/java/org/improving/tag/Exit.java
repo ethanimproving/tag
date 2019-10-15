@@ -1,9 +1,6 @@
 package org.improving.tag;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Transient;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -17,8 +14,13 @@ public class Exit {
     @Column(name="Name")
     private String name;
 
-    @Transient
+    @OneToOne
+    @JoinColumn(name="DestinationId")
     private Location destination;
+
+    @ManyToOne
+    @JoinColumn(name="OriginId")
+    private Location origin;
 
     @Transient
     private List<String> aliases = new ArrayList<>();

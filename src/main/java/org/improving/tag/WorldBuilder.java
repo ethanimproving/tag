@@ -28,10 +28,6 @@ public class WorldBuilder {
         try {
             List<Location> locations = locationDAO.findAll();
 
-            for (Location location : locations) {
-                List<Exit> exits = exitDAO.findExitsByOriginId(location.getId());
-                location.setExits(exits);
-            }
 
             System.out.println(locations.size());
             System.out.println(locations);
@@ -41,10 +37,10 @@ public class WorldBuilder {
                 return buildHardCodedWorld();
             }
             return locationList.get(1);
-        } catch (IllegalStateException e) {
+        } catch (Exception e) {
             e.printStackTrace();
             System.out.println("Exception has been caught" + e.getMessage());
-            return buildHardCodedWorld();
+            return null;
         }
 
     }
