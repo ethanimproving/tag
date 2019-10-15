@@ -22,23 +22,22 @@ public class ExitDAO {
 
     public List<Exit> findExitsByOriginId(int id) {
         try {
-            List<Exit> exits = jdbcTemplate.query("select * from locationexit where OriginId = ?", new Object[] {id},
-                    (result, rowNum) -> {
+            List<Exit> exits = jdbcTemplate.query("SELECT * FROM exits WHERE OriginId = ?", new Object[] {id},
+                    (results, rowNum) -> {
                         Exit exit = new Exit();
-                        exit.setId(result.getInt("OriginId"));
-                        exit.setName(result.getString("Name"));
-
-                        int destinationID = result.getInt("DestinationId");
-                        exit.setDestination(locationDAO.findAll().get(destinationID));
-
-                        List<String> aliases = Arrays.asList(result.getString("Aliases").split(","));
-                        exit.setAliases(aliases);
-
+                        exit.setName(results.getString("Name"));
+                        exit.setDestinationId(results.getInt("DestinationId"));
+                        String aliases = results.getString("Aliases");
+                        if (null != aliases) {
+                            Arrays.stream(aliases.replace(" ", "").split(","))
+                                    .forEach(alias -> exit.addAlias(alias));
+                        }
                         return exit;
                     });
+
             return exits;
         } catch (DataAccessException e) {
-            System.out.println("Exception in JDBC: " + e.getMessage());
+            System.out.println("SQL Exception: " + e.getMessage());
             return null;
         }
     }

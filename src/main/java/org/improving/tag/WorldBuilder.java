@@ -37,11 +37,13 @@ public class WorldBuilder {
             System.out.println(locations);
             locationList = locations;
             if (null == locationList) {
+                System.out.println("Locationlist is null");
                 return buildHardCodedWorld();
             }
             return locationList.get(1);
-        } catch (Exception e) {
+        } catch (IllegalStateException e) {
             e.printStackTrace();
+            System.out.println("Exception has been caught" + e.getMessage());
             return buildHardCodedWorld();
         }
 
@@ -50,6 +52,7 @@ public class WorldBuilder {
     public Location buildHardCodedWorld() {
 
         //*****ROOMS*****//
+        System.out.println("HARD coded world has been built.");
 
         var tdh = new Location();
         tdh.setName("The Deathly Hallows");

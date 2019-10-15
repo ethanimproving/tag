@@ -79,4 +79,12 @@ public class Exit {
         }
         return super.equals(obj);
     }
+
+    public void setDestinationId(int destinationId) {
+        this.id = destinationId;
+    }
+
+    public void addAlias(String alias) {
+        this.aliases.add(alias);
+    }
 }
