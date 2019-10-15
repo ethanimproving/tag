@@ -3,11 +3,13 @@ package org.improving.tag;
 import org.improving.tag.items.Item;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Transient;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity(name = "location")
 public class Location {
     @Id
     private int id;
@@ -17,6 +19,9 @@ public class Location {
 
     @Column(name="Description")
     private String description = "";
+
+    @Column(name="AdversaryId")
+    private Long adversaryId;
 
     @Transient
     private List<String> tags = new ArrayList<>();
@@ -111,6 +116,14 @@ public class Location {
 
     public void setExits(List<Exit> exits) {
         this.exits = exits;
+    }
+
+    public Long getAdversaryId() {
+        return adversaryId;
+    }
+
+    public void setAdversaryId(Long adversaryId) {
+        this.adversaryId = adversaryId;
     }
 }
 

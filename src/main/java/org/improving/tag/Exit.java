@@ -1,14 +1,26 @@
 package org.improving.tag;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Transient;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
+@Entity(name="locationexit")
 public class Exit {
-    private int id;
+    @Id
+    private long id;
+
+    @Column(name="Name")
     private String name;
+
+    @Transient
     private Location destination;
+
+    @Transient
     private List<String> aliases = new ArrayList<>();
 
     public Exit() { }
@@ -19,7 +31,7 @@ public class Exit {
         this.aliases.addAll(Arrays.asList(aliases));
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
