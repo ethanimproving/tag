@@ -8,8 +8,9 @@ import java.util.Arrays;
 
 @Entity(name = "adversary")
 public class Adversary {
+    // Won't need this later
     @Id
-    private long id;
+    private Long id;
 
     @Column(name = "Name")
     private String name;

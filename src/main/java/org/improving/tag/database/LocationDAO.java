@@ -28,13 +28,6 @@ public class LocationDAO {
             List<Location> locs =
                     em.createQuery("SELECT loc FROM org.improving.tag.Location loc").getResultList();
 
-            for (Location loc : locs) {
-                if (loc.getAdversaryId() != null) {
-                    Adversary adversary = em.find(Adversary.class, loc.getAdversaryId());
-                    loc.setAdversary(adversary);
-                }
-
-            }
 
 //            List<Location> locations = jdbcTemplate.query("SELECT l.Id as LocId, l.Name as LocName, l.Description, l.AdversaryId, a.Id as AdvId, a.Name as AdvName, a.HitPoints, a.DamageTaken, a.AttackDamage, a.DropItem FROM location l LEFT JOIN adversary a ON l.AdversaryId = a.Id",
 //                    (result, rowNum) -> {
