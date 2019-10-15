@@ -2,16 +2,32 @@ package org.improving.tag;
 
 import org.improving.tag.items.Item;
 
+import javax.persistence.Column;
+import javax.persistence.Id;
+import javax.persistence.Transient;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Location {
+    @Id
     private int id;
+
+    @Column(name="Name")
     private String name = "";
+
+    @Column(name="Description")
     private String description = "";
+
+    @Transient
     private List<String> tags = new ArrayList<>();
+
+    @Transient
     private List<Exit> exits = new ArrayList<>();
+
+    @Transient
     private Adversary adversary;
+
+    @Transient
     private TreasureChest treasureChest = TreasureChest.NO_TREASURE;
 
     public Item openTreasureChest() {

@@ -17,8 +17,7 @@ public class LookCommand extends BaseAliasedCommand {
     @Override
     public void execute(String input, Game game) {
         var location = game.getPlayer().getLocation();
-        io.displayText(location.getName());
-        io.displayText(location.getDescription());
+        io.displayText(location.getName() + ": " + location.getDescription());
         io.displayNewLine();
 
         if(location.getTreasureChest() != TreasureChest.NO_TREASURE) {

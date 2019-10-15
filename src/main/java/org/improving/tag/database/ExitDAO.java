@@ -32,6 +32,7 @@ public class ExitDAO {
                             Arrays.stream(aliases.replace(" ", "").split(","))
                                     .forEach(alias -> exit.addAlias(alias));
                         }
+                        System.out.println(exit.getName());
                         return exit;
                     });
 
