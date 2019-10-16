@@ -9,13 +9,6 @@ public enum UniqueItems implements Item {
     EVERLASTING_GOBSTOPPER("Everlasting Gobstopper","A gobstopper that never loses its flavor"),
     NOTHING("","");
 
-//    {
-//        @Override
-//        public String getDescription() {
-//        throw new UnsupportedOperationException();
-//        }
-//    }
-
     private final String description;
     private String name;
 

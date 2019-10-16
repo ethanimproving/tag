@@ -1,6 +1,5 @@
 package org.improving.tag;
 
-import org.improving.tag.items.Item;
 import org.improving.tag.items.UniqueItems;
 
 import javax.persistence.*;
@@ -33,19 +32,20 @@ public class Adversary {
     @Column(name = "DropItem")
     private String dropItemDb;
 
-    @Transient
-    private Item item = UniqueItems.NOTHING;
+    @Enumerated(EnumType.STRING)
+    private UniqueItems item;
 
     public Adversary() {
     }
 
-    public Adversary(String name) {
+    public Adversary(String name, UniqueItems item) {
         this.name = name;
         this.maxHitPoints = 100;
         this.hitPoints = this.maxHitPoints - this.damageTaken;
         this.damageTaken = 0;
         this.attackDamage = 15;
         this.inventory = new Inventory();
+        this.item = item;
     }
 
     public Inventory getInventory() {
@@ -96,11 +96,11 @@ public class Adversary {
         this.attackDamage = attackDamage;
     }
 
-    public Item getItem() {
+    public UniqueItems getItem() {
         return item;
     }
 
-    public void setItem(Item item) {
+    public void setItem(UniqueItems item) {
         this.item = item;
     }
 
