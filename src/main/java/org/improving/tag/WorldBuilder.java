@@ -34,7 +34,7 @@ public class WorldBuilder {
             if (null == locationList) {
                 System.out.println("Locationlist is null");
             }
-            return locationList.get(1);
+            return locationList.get(0);
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("Exception has been caught" + e.getMessage());
