@@ -22,8 +22,11 @@ public class Exit {
     @JoinColumn(name="OriginId")
     private Location origin;
 
+    @Column(name="Aliases")
+    private String aliasesDb;
+
     @Transient
-    private List<String> aliases = new ArrayList<>();
+    private List<String> aliases = new ArrayList<String>();
 
     public Exit() { }
 
@@ -101,4 +104,14 @@ public class Exit {
     public void addAlias(String alias) {
         this.aliases.add(alias);
     }
+
+
+    @PostLoad
+    public void postLoad() {
+        var aliasesArr = aliasesDb.split(",");
+        for(String alias : aliasesArr) {
+            aliases.add(alias.trim());
+        }
+    }
+
 }

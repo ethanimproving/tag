@@ -33,7 +33,8 @@ public class AttackCommand extends BaseAliasedCommand {
                 io.displayText("Attack Missed!");
             }
             if (adversary.getHitPoints() <= 0) {
-                var advItem = adversary.getInventory().getItem();
+                // TODO: get drop item to return type item
+                var advItem = adversary.getItem();
 
                 io.displayText("You have defeated " + adversary.getName() + ". " + advItem + " was found on his dead corpse. #winning");
                 game.getPlayer().getInventory().addItem(advItem);
