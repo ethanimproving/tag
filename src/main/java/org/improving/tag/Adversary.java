@@ -3,7 +3,6 @@ package org.improving.tag;
 import org.improving.tag.items.UniqueItems;
 
 import javax.persistence.*;
-import java.util.Arrays;
 
 @Entity(name = "adversary")
 public class Adversary {
@@ -30,8 +29,6 @@ public class Adversary {
     private Inventory inventory;
 
     @Column(name = "DropItem")
-    private String dropItemDb;
-
     @Enumerated(EnumType.STRING)
     private UniqueItems item;
 
@@ -104,22 +101,8 @@ public class Adversary {
         this.item = item;
     }
 
-    public String getDropItemDb() {
-        return dropItemDb;
-    }
-
-    public void setDropItemDb(String dropItemDb) {
-        this.dropItemDb = dropItemDb;
-    }
-
     @PostLoad
     public void postLoad() {
-        if (null != dropItemDb) {
-            this.setItem(Arrays
-                    .stream(UniqueItems.values())
-                    .filter(item -> item.getName().equals(dropItemDb))
-                    .findFirst()
-                    .orElse(null));
-        }
+        System.out.println(item);
     }
 }
