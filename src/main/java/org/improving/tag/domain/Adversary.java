@@ -99,9 +99,4 @@ public class Adversary {
     public void setItem(UniqueItems item) {
         this.item = item;
     }
-
-    @PostLoad
-    public void postLoad() {
-        System.out.println("Adversary Post Load: " + item);
-    }
 }
