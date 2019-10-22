@@ -21,7 +21,9 @@ public class Location {
     private List<String> tags = new ArrayList<>();
 
     // mabbedBy property Exit class found in property datatype
-    @OneToMany(mappedBy = "origin")
+    // FetchType.EAGER explained:
+    // https://stackoverflow.com/questions/22821695/how-to-fix-hibernate-lazyinitializationexception-failed-to-lazily-initialize-a
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "origin")
     private List<Exit> exits = new ArrayList<>();
 
     @ManyToOne
