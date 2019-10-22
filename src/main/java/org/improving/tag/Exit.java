@@ -73,15 +73,6 @@ public class Exit {
         return this.getName();
     }
 
-//    @Override
-//    public int hashCode() {
-//        int hash = 7;
-//        hash = (31 * hash) + (this.getName() == null ? 0 : getName().hashCode());
-//        hash = (31 * hash) + (this.getDestination() == null ? 0 : getDestination().hashCode());
-//        return hash;
-//    }
-
-
     @Override
     public int hashCode() {
         return Objects.hash(name, destination);
@@ -104,7 +95,6 @@ public class Exit {
     public void addAlias(String alias) {
         this.aliases.add(alias);
     }
-
 
     @PostLoad
     public void postLoad() {

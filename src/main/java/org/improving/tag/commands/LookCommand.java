@@ -34,11 +34,6 @@ public class LookCommand extends BaseAliasedCommand {
         exitRepository.findExitsByOriginId(location.getId())
                 .forEach(e -> System.out.println("  " + e.getName()));
 
-//        for ( var exit : location.getExits()) {
-//            io.displayText("  " + exit);
-//        }
-
-
         if(location.getAdversary() != null) {
             io.displayNewLine();
             io.displayText("Watch out! " + location.getAdversary().getName() + " is right behind you!");

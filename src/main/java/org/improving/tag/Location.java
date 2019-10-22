@@ -87,9 +87,6 @@ public class Location {
     }
 
     public String getTreasureDescription() {
-//        if (TreasureChest.NO_TREASURE.equals(treasureChest)) {
-//            throw new UnsupportedOperationException();
-//        }
         return treasureChest.getDescription();
     }
 
