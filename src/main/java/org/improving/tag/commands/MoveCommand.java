@@ -3,17 +3,23 @@ package org.improving.tag.commands;
 import org.improving.tag.Exit;
 import org.improving.tag.Game;
 import org.improving.tag.InputOutput;
+import org.improving.tag.database.ExitRepository;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 @Component
 public class MoveCommand extends BaseAliasedCommand {
     private InputOutput io;
+    private ExitRepository exitRepository;
 
-    public MoveCommand(InputOutput io) {
+
+    public MoveCommand(InputOutput io, ExitRepository exitRepository) {
         super(io,"move", "m", "mo", "mov");
         this.io = io;
+        this.exitRepository = exitRepository;
     }
 
     @Override
@@ -35,29 +41,17 @@ public class MoveCommand extends BaseAliasedCommand {
         // SOLVE with substring
 //        var destination = input.substring(input.indexOf(" ") + 1);
 
-        // SOLVE by copying the Array
-//        var parameters = Arrays.asList(parts);
-//        parameters.remove(0);
-//        var destinationTim = String.join(" ", parameters);
-
         // SOLVE by copying array from range until length
         var path = Arrays.copyOfRange(parts, 1, parts.length);
         var destination = String.join(" ", path);
 
-        Exit exit = null;
-        for (var e : game.getPlayer().getLocation().getExits()) {
-            if (e.getName().equalsIgnoreCase(destination)) {
-                exit = e;
-            } else {
-                for (var a : e.getAliases()) {
-                    if (a.equalsIgnoreCase(destination)) {
-                        exit = e;
-                        break;
-                    }
-                }
-            }
-            if (exit != null) break;
-        }
+        List<Exit> locationExits = new ArrayList<>(exitRepository.findExitsByOriginId(game.getPlayer().getLocation().getId()));
+
+        Exit exit = locationExits.stream()
+                .filter(e -> e.getAliases().stream().anyMatch(destination::equalsIgnoreCase))
+                .findFirst()
+                .orElse(null);
+
         if (exit == null) throw new UnsupportedOperationException();
         if (game.getPlayer().getLocation().getAdversary() != null) {
             io.displayText("YOU SHALL NOT PASS.");
