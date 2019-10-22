@@ -22,12 +22,7 @@ public class WorldBuilder {
             List<Location> locations = new ArrayList<>();
             locationRepository.findAll().forEach(locations::add);
 
-            System.out.println(locations.size());
-            System.out.println(locations);
             locationList = locations;
-            if (null == locationList) {
-                System.out.println("Locationlist is null");
-            }
             return locationList.get(0);
         } catch (Exception e) {
             e.printStackTrace();

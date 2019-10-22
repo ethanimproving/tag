@@ -28,7 +28,6 @@ public class JPAConfiguration {
         LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
         em.setDataSource(dataSource());
         em.setPackagesToScan(new String[]{"org.improving.tag"});
-        System.out.println("Set scan package to org.improving.tag");
 
         JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         em.setJpaVendorAdapter(vendorAdapter);
@@ -49,7 +48,6 @@ public class JPAConfiguration {
             dataSource = dmDataSource;
         }
 
-        System.out.println("datasource = " + dataSource);
         return dataSource;
     }
 
