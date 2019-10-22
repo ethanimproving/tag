@@ -1,8 +1,8 @@
 package org.improving.tag;
 
-import org.improving.tag.database.ExitDAO;
-import org.improving.tag.database.LocationDAO;
+import org.improving.tag.database.LocationRepository;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,23 +10,17 @@ import java.util.List;
 @Component
 public class WorldBuilder {
     private List<Location> locationList = new ArrayList<>();
-    private final LocationDAO locationDAO;
-    private final ExitDAO exitDAO;
+    private LocationRepository locationRepository;
 
-    public WorldBuilder(LocationDAO locationDAO, ExitDAO exitDAO) {
-        this.locationDAO = locationDAO;
-        this.exitDAO = exitDAO;
+    public WorldBuilder(LocationRepository locationRepository) {
+        this.locationRepository = locationRepository;
     }
 
-    public List<Location> getLocationList() {
-        return locationList;
-    }
-
+    @Transactional
     public Location buildWorld() {
-
         try {
-            List<Location> locations = locationDAO.findAll();
-
+            List<Location> locations = new ArrayList<>();
+            locationRepository.findAll().forEach(locations::add);
 
             System.out.println(locations.size());
             System.out.println(locations);
@@ -40,7 +34,6 @@ public class WorldBuilder {
             System.out.println("Exception has been caught" + e.getMessage());
             return null;
         }
-
     }
 
 //    public Location buildHardCodedWorld() {
@@ -139,5 +132,9 @@ public class WorldBuilder {
         }
 
         return null;
+    }
+
+    public List<Location> getLocationList() {
+        return locationList;
     }
 }

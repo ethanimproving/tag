@@ -3,15 +3,18 @@ package org.improving.tag.commands;
 import org.improving.tag.Game;
 import org.improving.tag.InputOutput;
 import org.improving.tag.TreasureChest;
+import org.improving.tag.database.ExitRepository;
 import org.springframework.stereotype.Component;
 
 @Component
 public class LookCommand extends BaseAliasedCommand {
     private InputOutput io;
+    private ExitRepository exitRepository;
 
-    public LookCommand(InputOutput io) {
+    public LookCommand(InputOutput io, ExitRepository exitRepository) {
         super(io,"l", "look", "whereami", "where am i", "donde estoy", "?donde estoy?");
         this.io = io;
+        this.exitRepository = exitRepository;
     }
 
     @Override
@@ -28,9 +31,12 @@ public class LookCommand extends BaseAliasedCommand {
 
 
         io.displayText("Exits:");
-        for ( var exit : location.getExits()) {
-            io.displayText("  " + exit);
-        }
+        exitRepository.findExitsByOriginId(location.getId())
+                .forEach(e -> System.out.println("  " + e.getName()));
+
+//        for ( var exit : location.getExits()) {
+//            io.displayText("  " + exit);
+//        }
 
 
         if(location.getAdversary() != null) {

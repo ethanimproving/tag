@@ -14,7 +14,7 @@ class LookCommandTest {
     public void arrange() {
         // Arrange
         io = new TestInputOutput();
-        target = new LookCommand(io);
+        target = new LookCommand(io, null);
     }
 
     @Test
