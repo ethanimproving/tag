@@ -29,7 +29,6 @@ public class Adversary {
     private Inventory inventory;
 
     @Column(name = "DropItem")
-    @Enumerated(EnumType.STRING)
     private UniqueItems item;
 
     public Adversary() {
