@@ -20,9 +20,7 @@ public class WorldBuilder {
     @Transactional
     public Location buildWorld() {
         try {
-            // TODO: Modify findAll() to return List<Location>
-            List<Location> locations = new ArrayList<>();
-            locationRepository.findAll().forEach(locations::add);
+            List<Location> locations = locationRepository.findAll();
 
             locationList = locations;
             return locationList.get(0);
