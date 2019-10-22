@@ -1,4 +1,4 @@
-package org.improving.tag;
+package org.improving.tag.domain;
 
 import org.improving.tag.items.Item;
 import org.improving.tag.items.ItemComparator;

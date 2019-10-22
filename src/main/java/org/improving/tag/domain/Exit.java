@@ -1,4 +1,4 @@
-package org.improving.tag;
+package org.improving.tag.domain;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -23,10 +23,7 @@ public class Exit {
     private Location origin;
 
     @Column(name="Aliases")
-    private String aliasesDb;
-
-    @Transient
-    private List<String> aliases = new ArrayList<String>();
+    private List<String> aliases = new ArrayList<>();
 
     public Exit() { }
 
@@ -95,13 +92,4 @@ public class Exit {
     public void addAlias(String alias) {
         this.aliases.add(alias);
     }
-
-    @PostLoad
-    public void postLoad() {
-        var aliasesArr = aliasesDb.split(",");
-        for(String alias : aliasesArr) {
-            aliases.add(alias.trim());
-        }
-    }
-
 }

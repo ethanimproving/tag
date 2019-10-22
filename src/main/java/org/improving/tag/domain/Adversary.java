@@ -1,4 +1,4 @@
-package org.improving.tag;
+package org.improving.tag.domain;
 
 import org.improving.tag.items.UniqueItems;
 
@@ -102,6 +102,6 @@ public class Adversary {
 
     @PostLoad
     public void postLoad() {
-        System.out.println(item);
+        System.out.println("Adversary Post Load: " + item);
     }
 }

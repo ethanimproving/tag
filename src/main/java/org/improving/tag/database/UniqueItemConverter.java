@@ -19,12 +19,10 @@ public class UniqueItemConverter implements AttributeConverter<UniqueItems,Strin
     @Override
     public UniqueItems convertToEntityAttribute(String s) {
         if(s != null) {
-            var uniqueItem =
-                    Arrays.stream(UniqueItems.values())
-                            .filter(ui -> ui.getName().equals(s))
-                            .findFirst()
-                            .orElse(null);
-            return uniqueItem;
+            return Arrays.stream(UniqueItems.values())
+                    .filter(ui -> ui.getName().equals(s))
+                    .findFirst()
+                    .orElse(null);
         }
         return UniqueItems.NOTHING;
     }

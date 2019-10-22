@@ -1,6 +1,6 @@
 package org.improving.tag.database;
 
-import org.improving.tag.Location;
+import org.improving.tag.domain.Location;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

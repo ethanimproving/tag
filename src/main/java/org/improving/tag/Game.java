@@ -1,6 +1,8 @@
 package org.improving.tag;
 
 import org.improving.tag.commands.Command;
+import org.improving.tag.domain.Location;
+import org.improving.tag.domain.Player;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;

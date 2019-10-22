@@ -1,6 +1,6 @@
 package org.improving.tag.commands;
 
-import org.improving.tag.Exit;
+import org.improving.tag.domain.Exit;
 import org.improving.tag.Game;
 import org.improving.tag.InputOutput;
 import org.improving.tag.database.ExitRepository;

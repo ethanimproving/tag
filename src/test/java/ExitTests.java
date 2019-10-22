@@ -1,5 +1,5 @@
-import org.improving.tag.Exit;
-import org.improving.tag.Location;
+import org.improving.tag.domain.Exit;
+import org.improving.tag.domain.Location;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 

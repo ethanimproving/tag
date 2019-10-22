@@ -1,5 +1,6 @@
 package org.improving.tag;
 
+import org.improving.tag.domain.Location;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;

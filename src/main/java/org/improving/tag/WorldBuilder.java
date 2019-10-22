@@ -1,6 +1,7 @@
 package org.improving.tag;
 
 import org.improving.tag.database.LocationRepository;
+import org.improving.tag.domain.Location;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,6 +20,7 @@ public class WorldBuilder {
     @Transactional
     public Location buildWorld() {
         try {
+            // TODO: Modify findAll() to return List<Location>
             List<Location> locations = new ArrayList<>();
             locationRepository.findAll().forEach(locations::add);
 

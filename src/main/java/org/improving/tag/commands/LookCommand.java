@@ -2,7 +2,7 @@ package org.improving.tag.commands;
 
 import org.improving.tag.Game;
 import org.improving.tag.InputOutput;
-import org.improving.tag.TreasureChest;
+import org.improving.tag.domain.TreasureChest;
 import org.improving.tag.database.ExitRepository;
 import org.springframework.stereotype.Component;
 

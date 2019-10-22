@@ -1,6 +1,6 @@
 package org.improving.tag.database;
 
-import org.improving.tag.Exit;
+import org.improving.tag.domain.Exit;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

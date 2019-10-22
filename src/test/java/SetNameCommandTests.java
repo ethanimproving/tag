@@ -1,11 +1,8 @@
 import org.improving.tag.Game;
-import org.improving.tag.Player;
-import org.improving.tag.SpringContext;
+import org.improving.tag.domain.Player;
 import org.improving.tag.commands.SetNameCommand;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.configuration.IMockitoConfiguration;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertFalse;
