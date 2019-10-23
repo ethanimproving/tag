@@ -32,7 +32,7 @@ public class Location {
     private TreasureChest treasureChest;
 
     public Item openTreasureChest() {
-        if (TreasureChest.NO_TREASURE.equals(treasureChest.getItem())) {
+        if (TreasureChest.NO_TREASURE.equals(treasureChest)) {
             throw new UnsupportedOperationException();
         }
         Item treasure = treasureChest.getItem();

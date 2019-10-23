@@ -23,7 +23,7 @@ public class LookCommand extends BaseAliasedCommand {
         io.displayText(location.getName() + ": " + location.getDescription());
         io.displayNewLine();
 
-        if(location.getTreasureChest() != TreasureChest.NO_TREASURE) {
+        if(location.getTreasureChest() != null && location.getTreasureChest() != TreasureChest.NO_TREASURE) {
             io.displayText("Treasure:");
             io.displayText("  " + location.getTreasureChest());
             io.displayNewLine();
