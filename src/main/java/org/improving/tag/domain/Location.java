@@ -17,9 +17,6 @@ public class Location {
     @Column(name="Description")
     private String description = "";
 
-    @Transient
-    private List<String> tags = new ArrayList<>();
-
     // mabbedBy property Exit class found in property datatype
     // FetchType.EAGER explained:
     // https://stackoverflow.com/questions/22821695/how-to-fix-hibernate-lazyinitializationexception-failed-to-lazily-initialize-a
@@ -30,11 +27,12 @@ public class Location {
     @JoinColumn(name="AdversaryId")
     private Adversary adversary;
 
-    @Transient
-    private TreasureChest treasureChest = TreasureChest.NO_TREASURE;
+    @OneToOne
+    @JoinColumn(name = "ChestId", referencedColumnName = "id")
+    private TreasureChest treasureChest;
 
     public Item openTreasureChest() {
-        if (TreasureChest.NO_TREASURE.equals(treasureChest)) {
+        if (TreasureChest.NO_TREASURE.equals(treasureChest.getItem())) {
             throw new UnsupportedOperationException();
         }
         Item treasure = treasureChest.getItem();
@@ -76,10 +74,6 @@ public class Location {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public List<String> getTags() {
-        return tags;
     }
 
     public List<Exit> getExits() {

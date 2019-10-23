@@ -1,19 +1,36 @@
 package org.improving.tag.domain;
 
-import org.improving.tag.items.Item;
 import org.improving.tag.items.UniqueItems;
 
-public class TreasureChest {
-    public static final TreasureChest NO_TREASURE = new TreasureChest(UniqueItems.NOTHING, "");
-    private final Item item;
-    private final String description;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Transient;
 
-    public TreasureChest(Item item, String description) {
+@Entity(name = "chest")
+public class TreasureChest {
+
+    @Transient
+    public static final TreasureChest NO_TREASURE = new TreasureChest(UniqueItems.NOTHING, "");
+
+    @Id
+    private long id;
+
+    @Column(name = "Item")
+    private UniqueItems item = UniqueItems.NOTHING;
+
+    @Column(name = "Description")
+    private String description = "";
+
+    public TreasureChest() {
+    }
+
+    public TreasureChest(UniqueItems item, String description) {
         this.item = item;
         this.description = description;
     }
 
-    public Item getItem() {
+    public UniqueItems getItem() {
         return item;
     }
 
